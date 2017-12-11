@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+set -e
+
+if [ ! -d "/etc/collectd/conf.enabled" ]; then
+    mkdir /etc/collectd/conf.enabled
+fi
+
 pagespeed-config-generate desktop
 pagespeed-config-generate mobile
 envsubst < /etc/collectd/conf.available/write_http_librato.conf.template > /etc/collectd/conf.enabled/write_http_librato.conf
