@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+pagespeed-config-generate desktop
+pagespeed-config-generate mobile
+envsubst < /etc/collectd/conf.available/write_http_librato.conf.template > /etc/collectd/conf.enabled/write_http_librato.conf
+
+exec "$@"

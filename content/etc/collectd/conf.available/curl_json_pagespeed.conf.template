@@ -1,0 +1,14 @@
+LoadPlugin "curl_json"
+<Plugin "curl_json">
+    <URL "${PAGESPEED_API_URL}">
+        Host "${PAGESPEED_HOST}"
+        Instance "pagespeed-${PAGESPEED_STRATEGY}"
+        Interval 300
+
+        <Key "ruleGroups/SPEED/score">
+            Type "gauge"
+            Instance "score"
+        </Key>
+
+    </URL>
+</Plugin>

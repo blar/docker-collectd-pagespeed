@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+set -e
+
+export PAGESPEED_STRATEGY=$1
+
+PAGESPEED_API_URL="https://www.googleapis.com/pagespeedonline/v2/runPagespeed?screenshot=false&strategy=$PAGESPEED_STRATEGY"
+
+# API-Key anhängen falls dieser vorhanden ist.
+if [ -n "$PAGESPEED_KEY" ]; then
+    PAGESPEED_API_URL="$PAGESPEED_API_URL&key=$PAGESPEED_KEY"
+fi
+
+PAGESPEED_API_URL="$PAGESPEED_API_URL&url=$PAGESPEED_URL"
+export PAGESPEED_API_URL
+envsubst < /etc/collectd/conf.available/curl_json_pagespeed.conf.template > /etc/collectd/conf.enabled/curl_json_pagespeed_$PAGESPEED_STRATEGY.conf

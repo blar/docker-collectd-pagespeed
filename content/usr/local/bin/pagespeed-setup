@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+apk update
+apk add collectd collectd-curl collectd-write_http gettext
+rm -rvf /var/cache/apk/*
